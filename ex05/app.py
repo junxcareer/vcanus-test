@@ -64,10 +64,9 @@ def measure_depth_of_pond(x, y):
             if graph[nx][ny] >= graph[x][y]:
                 # 참으로 변경
                 check_surrounding_deeper[i] = True
-
-
-        # 만약 상하좌우 셀 중 하나라도 현재 셀보다 얕다면
-        if False in check_surrounding_deeper:
+                
+        # 만약 상하좌우 셀 중 하나라도 현재 셀보다 얕거나, 현재 셀이 땅이라면
+        if False in check_surrounding_deeper or graph[x][y] == 0:
             # 현재 셀의 깊이 측정 완료
             checked_bottom[x][y] = True
         # 상하좌우 셀 모두가 현재 셀보다 깊거나 같다면
@@ -81,3 +80,6 @@ def measure_depth_of_pond(x, y):
 result = measure_depth_of_pond(0, 0)
 
 print(sum(sum(i) for i in result))
+
+for r in result:
+    print(r)
